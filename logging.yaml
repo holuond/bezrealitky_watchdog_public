@@ -1,0 +1,25 @@
+version: 1
+disable_existing_loggers: False
+loggers:
+  bezrealitky_watchdog:
+    handlers: [ 'console', 'file' ]
+    level: 'DEBUG'
+    propagate: False
+handlers:
+  console:
+    class: 'logging.StreamHandler'
+    level: 'DEBUG'
+    formatter: 'fmt'
+    stream: 'ext://sys.stdout'
+  file:
+    class: 'logging.FileHandler'
+    level: 'DEBUG'
+    formatter: 'fmt'
+    filename: 'app.log'
+    mode: 'a'
+    encoding: 'utf-8'
+formatters:
+  fmt:
+    (): 'bezrealitky_watchdog.logging_.ColoredFormatter'
+    format: '%(asctime)s %(levelname)s [%(threadName)s] %(name)s --- %(message)s'
+    datefmt: "%Y-%m-%d %H:%M:%S"
